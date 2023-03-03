@@ -1,17 +1,18 @@
 ﻿namespace RezLiveApis.Models
 {
-    public class HotelFindRequest
+    public class FindHotel
     {
-        //    public HotelFindRequest HotelFindRequest { get; set; }
-        public Authentication Authentication { get; set; }
+        public HotelFindRequest HotelFindRequest { get; set; }
         public Booking Booking { get; set; }
 
+       
+        
     }
 
     public class Booking
     {
-        public string ArrivalDate { get; set; }
-        public string DepartureDate { get; set; }
+        public DateTime ArrivalDate { get; set; }
+        public DateOnly DepartureDate { get; set; }
         public string CountryCode { get; set; }
         public int City { get; set; }
         public string GuestNationality { get; set; }
@@ -33,12 +34,12 @@
 
     public class HotelRatings
     {
-        public HotelRating[] HotelRating { get; set; }
+        public int[] HotelRating { get; set; }
     }
 
-    public class HotelRating
+    public class HotelFindRequest
     {
-        //public int HotelRate { get; set; }
+        public Authentication Authentication { get; set; }
     }
 
     public class Authentication
