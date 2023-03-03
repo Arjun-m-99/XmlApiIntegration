@@ -78,7 +78,7 @@ namespace RezLiveApis.Controllers
         }
 
         [HttpPost("/findHotel")]
-        public async Task<ActionResult> findHotel(FindHotel findHotel)
+        public async Task<ActionResult> findHotel(HotelFindRequest1 findHotel)
         {
             try
             {
@@ -86,7 +86,7 @@ namespace RezLiveApis.Controllers
                 client.DefaultRequestHeaders.Add("Accept", "application/xml");
                 //var request = new HttpRequestMessage(HttpMethod.Post, "http://test.xmlhub.com/testpanel.php/action/findhotel");
                 string xml = "";
-                XmlSerializer serializer = new XmlSerializer(typeof(FindHotel));
+                XmlSerializer serializer = new XmlSerializer(typeof(HotelFindRequest1));
                 await using (var stringWriter = new Utf8StringWriter())
                 {
                     await using (XmlWriter writer = XmlWriter.Create(stringWriter, new XmlWriterSettings() { Async = true }))
@@ -106,10 +106,10 @@ namespace RezLiveApis.Controllers
                     if (!string.IsNullOrEmpty(content))
                     {
                         // Deserializing Response from XML to Object
-                        XmlSerializer responseserializer = new XmlSerializer(typeof(FindHotel));
+                        XmlSerializer responseserializer = new XmlSerializer(typeof(HotelFindRequest1));
                         using (StringReader reader = new StringReader(content))
                         {
-                            var responsesong = (FindHotel)responseserializer.Deserialize(reader);
+                            var responsesong = (HotelFindRequest1)responseserializer.Deserialize(reader);
                             return Ok(responsesong);
                         }
                         return BadRequest(responseserializer);
