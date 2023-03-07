@@ -7,6 +7,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 using Twilio.TwiML;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace RezLiveApis.Controllers
 {
@@ -78,7 +79,7 @@ namespace RezLiveApis.Controllers
         }
 
         [HttpPost("/findHotel")]
-        public async Task<ActionResult> findHotel(HotelFindRequest findHotel)
+        public async Task<ActionResult> findHotel([FromForm]HotelFindRequest findHotel)
         {
             try
             {
@@ -98,7 +99,8 @@ namespace RezLiveApis.Controllers
 
                 HttpContent body = new StringContent(xml, Encoding.UTF8, "application/xml");
                 var response = client.PostAsync("http://test.xmlhub.com/testpanel.php/action/findhotel", body).Result;
-                
+                //var response = client.PostAsync("http://test.xmlhub.com/testpanel.php/action/findhotel", new FormUrlEncodedContent((IEnumerable<KeyValuePair<string, string>>)body)).GetAwaiter().GetResult();
+
                 if (response.IsSuccessStatusCode)
                 {
 
