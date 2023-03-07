@@ -79,7 +79,7 @@ namespace RezLiveApis.Controllers
         }
 
         [HttpPost("/findHotel")]
-        public async Task<ActionResult> findHotel([FromForm]HotelFindRequest findHotel)
+        public async Task<ActionResult> findHotel(HotelFindRequest findHotel)
         {
             try
             {
