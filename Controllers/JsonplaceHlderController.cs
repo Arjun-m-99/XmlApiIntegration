@@ -79,12 +79,14 @@ namespace RezLiveApis.Controllers
         }
 
         [HttpPost("/findHotel")]
-        public async Task<ActionResult> findHotel(HotelFindRequest findHotel)
+        [Consumes("application/x-www-form-urlencoded")]
+        //[Consumes("application/xml")]
+        public async Task<ActionResult> findHotel([FromForm]HotelFindRequest findHotel)
         {
             try
             {
                 HttpClient client = new HttpClient();
-                client.DefaultRequestHeaders.Add("Accept", "application/xml");
+                client.DefaultRequestHeaders.Add("Accept", "application/x-www-form-urlencoded");
                 //var request = new HttpRequestMessage(HttpMethod.Post, "http://test.xmlhub.com/testpanel.php/action/findhotel");
                 string xml = "";
                 XmlSerializer serializer = new XmlSerializer(typeof(HotelFindRequest));
@@ -97,7 +99,8 @@ namespace RezLiveApis.Controllers
                     }
                 }
 
-                HttpContent body = new StringContent(xml, Encoding.UTF8, "application/xml");
+                //HttpContent body = new StringContent(xml, Encoding.UTF8, "application/xml");
+                HttpContent body = new StringContent(xml, Encoding.UTF8, "application/x-www-form-urlencoded");
                 var response = client.PostAsync("http://test.xmlhub.com/testpanel.php/action/findhotel", body).Result;
                 //var response = client.PostAsync("http://test.xmlhub.com/testpanel.php/action/findhotel", new FormUrlEncodedContent((IEnumerable<KeyValuePair<string, string>>)body)).GetAwaiter().GetResult();
 

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections;
+using System.ComponentModel;
 using System.Xml.Serialization;
 
 namespace RezLiveApis.Models
@@ -28,21 +29,21 @@ namespace RezLiveApis.Models
 
     public class Rooms
     {
-        [XmlElement("Room")]
-        public Room[] Room { get ; set; }= new Room[] {};
+        //[XmlElement("Room")]
+        public Room[] Room { get ; set; }
     }
 
     public class Room
     {
-        [XmlElement("Type")]
+        //[XmlElement("Type")]
         //[DefaultValue("Room- 1")]
         public string Type { get; set; }
 
-        [XmlElement("NoOfAdults")]
+        //[XmlElement("NoOfAdults")]
         //[DefaultValue(2)]
         public int NoOfAdults { get; set; }
 
-        [XmlElement("NoOfChilds")]
+        //[XmlElement("NoOfChilds")]
         //[DefaultValue(0)]
         public int NoOfChilds { get; set; }
     }
